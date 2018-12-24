@@ -1,0 +1,12 @@
+#Colunas > div > div, #Colunas > div > input, #Resultado > ul > li > div {
+    width: 100%;
+    height: 20pt;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#Resultado img {
+    max-height: 200px;
+}

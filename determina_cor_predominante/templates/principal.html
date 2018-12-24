@@ -1,0 +1,142 @@
+<html lang="pt-br">
+    <head>
+        <title>Determinar Cor</title>
+        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/principal.css') }}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container" id="CoresEscolhidas">
+            <div class="row" id="Titulo">
+                <div class="col">
+                    <h2>Cores Escolhidas</h2>
+                </div>
+            </div>
+            <div class="row" id="Conteudo">
+                <div class="col">
+                    {% if coresEscolhidas %}
+                        <div class="row" id="Colunas">
+                            <div class="col">
+                                <label>Cor 1</label>
+                                <div style="background:{{ coresEscolhidas['1'] }}"></div>
+                            </div>
+                            <div class="col">
+                                <label>Cor 2</label>
+                                <div style="background:{{ coresEscolhidas['2'] }}"></div>
+                            </div>
+                            <div class="col">
+                                <label>Cor 3</label>
+                                <div style="background:{{ coresEscolhidas['3'] }}"></div>
+                            </div>
+                            <div class="col">
+                                <label>Cor 4</label>
+                                <div style="background:{{ coresEscolhidas['4'] }}"></div>
+                            </div>
+                            <div class="col">
+                                <label>Cor 5</label>
+                                <div style="background:{{ coresEscolhidas['5'] }}"></div>
+                            </div>
+                            <div class="col">
+                                <label>Cor 6</label>
+                                <div style="background:{{ coresEscolhidas['6'] }}"></div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p class="alert alert-danger">Cores ainda não escolhidas</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="container" id="DeterminarCor">
+            <div class="row" id="Titulo">
+                <div class="col">
+                    <h2>Determinar Cor Dominante</h2>
+                </div>
+            </div>
+            <div class="row" id="Conteudo">
+                <div class="col">
+                    <form action="/determinarCor" method="POST" target="_self" enctype="multipart/form-data">
+                        <input type="file" name="imagem" required />
+                        <button type="submit">Enviar Imagem</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if corDomimante %}
+                <div class="row" id="Titulo">
+                    <div class="col">
+                        <h2>Resultado</h2>
+                    </div>
+                </div>
+                <div class="row" id="Resultado">
+                    <ul class="col">
+                        <li>
+                            <label>Imagem Original</label><br />
+                            <img src="{{ caminhoImagem }}"></li>
+                        <li>
+                            <label>Cor Dominante</label>
+                            <div style="background:{{ corDomimante }}; border: 1px solid black;"></div>
+                        </li>
+                        <li>
+                            <label>Cor Escolhida Mais Próxima</label>
+                            {% if corEscolhida %}
+                                <p>{{ corEscolhida }}</p>
+                            {% else %}
+                                <p class="alert alert-danger">Não foram escolhidas cores</p>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <hr />
+        
+        <div class="container" id="SalvarCor">
+            <div class="row" id="Titulo">
+                <div class="col">
+                    <h2>Novas Cores</h2>
+                </div>
+            </div>
+            <div class="row" id="Conteudo">
+                <div class="col">
+                    <form action="/salvarCores" method="POST" target="_self">
+                        <div class="row" id="Colunas">
+                            <div class="col">
+                                <label>Cor 1</label>
+                                <input type="color" name="1">
+                            </div>
+                            <div class="col">
+                                <label>Cor 2</label>
+                                <input type="color" name="2">
+                            </div>
+                            <div class="col">
+                                <label>Cor 3</label>
+                                <input type="color" name="3">
+                            </div>
+                            <div class="col">
+                                <label>Cor 4</label>
+                                <input type="color" name="4">
+                            </div>
+                            <div class="col">
+                                <label>Cor 5</label>
+                                <input type="color" name="5">
+                            </div>
+                            <div class="col">
+                                <label>Cor 6</label>
+                                <input type="color" name="6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit">Salvar Cores</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
