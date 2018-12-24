@@ -3,7 +3,6 @@ import numpy as np
 from sklearn.cluster import KMeans
 from PIL import Image
 import threading
-from requests import post, get
 from flask import Flask, request, redirect, render_template
 from werkzeug.utils import secure_filename
 
